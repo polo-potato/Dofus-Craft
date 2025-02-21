@@ -217,6 +217,25 @@
     #buySellModal .module-button {
       margin-top: 15px;
     }
+
+    /* Styles pour les boutons Export/Import (similaires aux autres boutons) */
+    #exportDataButton, #importDataButton {
+      margin: 0 5px;
+      padding: 5px 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #97a800;
+      color: #FFF;
+    }
+
+    /* Vous pouvez ajuster la largeur des textarea dans les modales si besoin */
+    #exportTextarea, #importTextarea {
+      font-family: 'Roboto', system-ui, serif;
+      font-size: 14px;
+    }
+
     /* Mode sombre (adaptation minimale) */
     body.dark-theme {
       background-color: #EDEDED;
@@ -236,6 +255,8 @@
     <button id="themeToggle" onclick="toggleTheme()">Clair</button>
   </header>
   <div class="container">
+    <button id="exportDataButton" onclick="openExportModal()">Exporter données</button>
+    <button id="importDataButton" onclick="openImportModal()">Importer données</button>
     <!-- Module 1 : Gestion des Crafts -->
     <h2>Liste des Crafts</h2>
     <input type="text" id="craftFilterInput" class="filter-input" placeholder="Filtrer les crafts...">
@@ -360,6 +381,27 @@
     </div>
   </div>
 
+  <!-- Modal Export des Données -->
+  <div id="exportModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeExportModal()">&times;</span>
+      <h2>Exporter les données</h2>
+      <textarea id="exportTextarea" rows="10" style="width:100%;"></textarea>
+      <button class="module-button" onclick="closeExportModal()">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Modal Import des Données -->
+  <div id="importModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeImportModal()">&times;</span>
+      <h2>Importer les données</h2>
+      <textarea id="importTextarea" rows="10" style="width:100%;" placeholder="Collez ici le JSON à importer"></textarea>
+      <button class="module-button" onclick="doImportData()">Importer</button>
+      <button class="module-button" onclick="closeImportModal()">Annuler</button>
+    </div>
+  </div>
+
   <script>
     // Variables globales pour filtres et tris
     let craftFilterText = "";
@@ -465,6 +507,57 @@
       localStorage.setItem('crafts', JSON.stringify(crafts));
       localStorage.setItem('ingredients', JSON.stringify(ingredients));
     }
+
+    // Fonction d'export des données (renvoie un JSON formaté)
+function exportData() {
+  const data = {
+    crafts: crafts,
+    ingredients: ingredients
+  };
+  return JSON.stringify(data, null, 2);
+}
+
+// Fonction d'import des données depuis une chaîne JSON
+function importData(jsonString) {
+  try {
+    const data = JSON.parse(jsonString);
+    if (data.crafts && data.ingredients) {
+      crafts = data.crafts;
+      ingredients = data.ingredients;
+      saveData();
+      loadData();
+      alert("Données importées avec succès !");
+    } else {
+      alert("Format de données invalide.");
+    }
+  } catch (error) {
+    alert("Erreur lors de l'importation : " + error);
+  }
+}
+
+  // Fonctions pour ouvrir/fermer la modal Export
+  function openExportModal() {
+    const exportTextarea = document.getElementById("exportTextarea");
+    exportTextarea.value = exportData();
+    document.getElementById("exportModal").style.display = "block";
+  }
+  function closeExportModal() {
+    document.getElementById("exportModal").style.display = "none";
+  }
+
+  // Fonctions pour ouvrir/fermer la modal Import
+  function openImportModal() {
+    document.getElementById("importTextarea").value = "";
+    document.getElementById("importModal").style.display = "block";
+  }
+  function closeImportModal() {
+    document.getElementById("importModal").style.display = "none";
+  }
+  function doImportData() {
+    const jsonString = document.getElementById("importTextarea").value;
+    importData(jsonString);
+    closeImportModal();
+  }
 
     /* ---------- Utilitaire : Parsing d'un ingrédient ---------- */
     function parseIngredientPart(part) {
