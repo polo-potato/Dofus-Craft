@@ -1,0 +1,306 @@
+    /* Palette et typographie inspirées de Dofus avec couleurs personnalisées */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', system-ui, serif;
+        background-color: #F7F2E6; /* Beige doux */
+        color: #2C3E50;
+      }
+      header {
+        position: relative;
+        padding: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        background-color: #97a800; /* Vert personnalisé */
+        color: #FFF;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      /* Bouton Reset en haut à gauche */
+      #resetDataButton {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        padding: 5px 10px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #C0392B;
+        color: #FFF;
+      }
+      /* Bouton Thème en haut à droite */
+      #themeToggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        background-color: #97a800;
+        color: #FFF;
+      }
+      .container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h2 {
+        margin-top: 30px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #97a800;
+      }
+      /* Champs de filtre */
+      .filter-input {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: #FFF;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #E8E8E8;
+        color: #2C3E50;
+        cursor: pointer;
+        user-select: none;
+      }
+      /* Indicateur de tri */
+      .sort-indicator {
+        margin-left: 5px;
+        font-weight: normal;
+        color: #888;
+      }
+      .sort-indicator.active {
+        font-weight: bold;
+        color: #000;
+      }
+      /* Boutons */
+      .module-button {
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        background-color: #97a800;
+        color: #FFF;
+      }
+      .module-button:hover {
+        background-color: #7e9000;
+      }
+      /* Réduction de la largeur des inputs inline */
+      .inline-input {
+        width: 60px;
+      }
+      /* --- Modales --- */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      .modal-content {
+        background-color: #FFF;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        width: 400px;
+        max-width: 90%;
+        box-sizing: border-box;
+        border-radius: 8px;
+        font-family: 'Roboto', system-ui, serif;
+        color: #2C3E50;
+      }
+      .close {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover, .close:focus {
+        opacity: 0.8;
+      }
+        /* Styles pour la modal unique avec onglets */
+        .modal .tab-header {
+            overflow: hidden;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        
+        .modal .tab-header .tablink {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        
+        .modal .tab-header .tablink:hover {
+            background-color: #ddd;
+        }
+        
+        .modal .tab-header .tablink.active {
+            background-color: #97a800; /* Couleur verte personnalisée */
+            color: #FFF;
+        }
+        
+        /* Les contenus d'onglets */
+        .modal .tabcontent {
+            display: none;
+        }
+        
+        /* Pour forcer l'affichage initial du premier onglet */
+        .modal .tabcontent:first-child {
+            display: block;
+        }
+
+      input[type="text"], input[type="number"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: 'Roboto', system-ui, serif;
+      }
+      label {
+        font-weight: 500;
+      }
+      /* Détail hiérarchisé */
+      .breakdown {
+        margin-top: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #FFF;
+      }
+      .breakdown ul {
+        list-style-type: none;
+        padding-left: 20px;
+      }
+      .breakdown li {
+        margin-bottom: 5px;
+      }
+      .breakdown .title {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      /* Résultat détaillé */
+      .result-container {
+        margin-top: 15px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #e4e0d7;
+        font-size: 14px;
+      }
+      .result-container h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #2C3E50;
+      }
+      .result-table, .breakdown-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      .result-table th, .result-table td,
+      .breakdown-table th, .breakdown-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      .result-table th, .breakdown-table th {
+        background-color: #DFE6E9;
+        font-weight: bold;
+      }
+      .result-table tr:nth-child(even), .breakdown-table tr:nth-child(even) {
+        background-color: #F8F8F8;
+      }
+      /* Espacement pour le bouton "Calculer" dans le modal ressources */
+      #buySellModal .module-button {
+        margin-top: 15px;
+      }
+  
+      /* Styles pour les boutons Export/Import (similaires aux autres boutons) */
+      #exportDataButton, #importDataButton {
+        margin: 0 5px;
+        padding: 5px 10px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #97a800;
+        color: #FFF;
+      }
+  
+      /* Vous pouvez ajuster la largeur des textarea dans les modales si besoin */
+      #exportTextarea, #importTextarea {
+        font-family: 'Roboto', system-ui, serif;
+        font-size: 14px;
+      }
+  
+      /* Mode sombre (adaptation minimale) */
+      body.dark-theme {
+        background-color: #000024;
+        color: #CCC;
+      }
+      body.dark-theme header {
+        background-color: #18142e;
+        color: #97a800;
+        border-bottom-color: #FF9C00;
+      }
+      body.dark-theme td{
+        background-color: #18142e;
+      }
+      body.dark-theme th{
+        background-color: #170e42;
+        color: #fff;
+      }
+      body.dark-theme .modal-content{
+        background-color: #170e42;
+        color: #fff;
+      }
+      body.dark-theme input {
+        background-color: #170e42;
+        color: #fff;
+      }
+      body.dark-theme #consumptionModalBody, #breakdownDetails {
+        background-color: #170e42;
+        color: #fff;
+      }
+      body.dark-theme .tablink{
+        color: #fff;
+      }
+
+      /*classes de modif*/
+      .red-bg{
+        background-color: #C0392B;
+      }
+      .red-bg:hover{
+        background-color: #852014;
+      }
